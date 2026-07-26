@@ -64,7 +64,7 @@
 
   /* ============ HOME SCREEN ============ */
   #screenHome{
-    background-image:url('kidsgate-hero.png');
+    background-image:url('kidsgate-hero-2.png');
     background-size:cover;
     background-position:center 20%;
     background-repeat:no-repeat;
@@ -125,11 +125,11 @@
   /* ============ FORM SCREEN ============ */
   #screenForm{
     background:
-      radial-gradient(circle at 14% 12%, rgba(63,179,224,0.22) 0, transparent 38%),
-      radial-gradient(circle at 88% 8%, rgba(155,89,182,0.18) 0, transparent 36%),
-      radial-gradient(circle at 90% 92%, rgba(124,179,66,0.22) 0, transparent 40%),
-      radial-gradient(circle at 6% 90%, rgba(247,148,29,0.18) 0, transparent 38%),
-      var(--cream);
+      linear-gradient(rgba(255,253,246,0.82), rgba(255,253,246,0.88)),
+      url('kidsgate-hero-2.png');
+    background-size:cover;
+    background-position:center 20%;
+    background-repeat:no-repeat;
     justify-content:center;
     align-items:center;
     padding:28px 18px;
@@ -308,6 +308,10 @@
               <option value="تمهيدي" data-i18n="stagePreK">تمهيدي</option>
               <option value="KG1">KG1</option>
               <option value="KG2">KG2</option>
+              <option value="الصف الأول" data-i18n="stageG1">الصف الأول</option>
+              <option value="الصف الثاني" data-i18n="stageG2">الصف الثاني</option>
+              <option value="الصف الثالث" data-i18n="stageG3">الصف الثالث</option>
+              <option value="الصف الرابع" data-i18n="stageG4">الصف الرابع</option>
             </select>
           </div>
 
@@ -343,6 +347,10 @@
       stagePlaceholder:"اختر المرحلة",
       stageKG:"رياض الأطفال",
       stagePreK:"تمهيدي",
+      stageG1:"الصف الأول",
+      stageG2:"الصف الثاني",
+      stageG3:"الصف الثالث",
+      stageG4:"الصف الرابع",
       errorMsg:"صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.",
       confirm:"تأكيد الحضور",
       successTitle:"تم التسجيل بنجاح",
@@ -363,6 +371,10 @@
       stagePlaceholder:"Select grade level",
       stageKG:"Kindergarten",
       stagePreK:"Pre-K",
+      stageG1:"Grade 1",
+      stageG2:"Grade 2",
+      stageG3:"Grade 3",
+      stageG4:"Grade 4",
       errorMsg:"Something went wrong. Check your connection and try again.",
       confirm:"Confirm Attendance",
       successTitle:"You're registered!",
