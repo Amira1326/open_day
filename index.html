@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Kids Gate | تسجيل الحضور</title>
+<title>Kids Gate | Open Day</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;700;800&family=Baloo+2:wght@600;700;800&family=Tajawal:wght@400;500;700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --sky:#BFE8F5;
@@ -26,77 +26,101 @@
     background:var(--cream);
     overflow-x:hidden;
   }
+  body.lang-en{ font-family:'Nunito', sans-serif; }
+  .ar-font{ font-family:'Baloo Bhaijaan 2', sans-serif; }
+  body.lang-en .ar-font{ font-family:'Baloo 2', sans-serif; }
 
   /* ============ APP SHELL ============ */
-  .app{
-    position:relative;
-    width:100%;
-    min-height:100vh;
-    min-height:100dvh;
-  }
+  .app{ position:relative; width:100%; min-height:100vh; min-height:100dvh; }
   .screen{
-    position:absolute;
-    inset:0;
-    width:100%;
-    min-height:100vh;
-    min-height:100dvh;
-    display:flex;
-    flex-direction:column;
-    opacity:1;
-    transform:translateX(0);
+    position:absolute; inset:0; width:100%;
+    min-height:100vh; min-height:100dvh;
+    display:flex; flex-direction:column;
+    opacity:1; transform:translateX(0);
     transition:opacity .45s ease, transform .45s ease;
   }
-  .screen.hidden{
-    opacity:0;
-    pointer-events:none;
-  }
+  .screen.hidden{ opacity:0; pointer-events:none; }
   #screenHome.hidden{ transform:translateX(6%); }
   #screenForm{ transform:translateX(6%); opacity:0; pointer-events:none; }
   #screenForm.active{ transform:translateX(0); opacity:1; pointer-events:auto; }
 
+  /* ============ LANGUAGE TOGGLE ============ */
+  .lang-toggle{
+    position:fixed;
+    top:18px; left:18px;
+    z-index:50;
+    background:rgba(255,255,255,0.92);
+    color:var(--grass-dark);
+    font-family:'Tajawal', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    padding:9px 18px;
+    border-radius:100px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,0.12);
+    display:flex; align-items:center; gap:6px;
+    border:none;
+  }
+
   /* ============ HOME SCREEN ============ */
   #screenHome{
-    background-image:url('kidsgate-hero.png');
+    background-image:url('kidsgate-hero-2.png');
     background-size:cover;
     background-position:center 20%;
     background-repeat:no-repeat;
-    justify-content:flex-end;
-    align-items:center;
-    padding-bottom:9%;
+    position:relative;
   }
-  .path-btn{
-    appearance:none; border:none; cursor:pointer;
-    font-family:'Baloo Bhaijaan 2', sans-serif;
-    background:var(--orange);
-    color:#fff;
-    font-size:clamp(20px, 3.2vw, 28px);
-    font-weight:700;
-    padding:18px 52px;
-    border-radius:100px;
-    border:5px solid #fff;
-    box-shadow:0 10px 0 #C96F0E, 0 18px 30px rgba(0,0,0,0.18);
-    display:inline-flex;
+  .cta-stack{
+    position:absolute;
+    top:44%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:12px;
-    transition:transform .15s ease, box-shadow .15s ease;
-    animation:bob 2.6s ease-in-out infinite;
+    gap:16px;
+    width:100%;
+    padding:0 20px;
   }
-  .path-btn:hover{ transform:translateY(3px); box-shadow:0 7px 0 #C96F0E, 0 14px 24px rgba(0,0,0,0.18); }
-  .path-btn:active{ transform:translateY(10px); box-shadow:0 0 0 #C96F0E, 0 8px 14px rgba(0,0,0,0.18); }
-  @keyframes bob{
-    0%,100%{ transform:translateY(0); }
-    50%{ transform:translateY(-8px); }
+  .open-day-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 6vw, 50px);
+    color:var(--orange);
+    text-shadow:0 3px 0 rgba(255,255,255,0.7), 0 8px 18px rgba(43,58,58,0.15);
+    letter-spacing:1px;
+    line-height:1;
   }
   .path-hint{
     font-family:'Tajawal', sans-serif;
     font-weight:700;
-    font-size:14px;
+    font-size:13.5px;
     color:var(--grass-dark);
-    background:rgba(255,255,255,0.85);
+    background:rgba(255,255,255,0.9);
     padding:6px 16px;
     border-radius:100px;
-    margin-bottom:14px;
   }
+  .path-btn{
+    appearance:none; border:none; cursor:pointer;
+    font-family:'Baloo Bhaijaan 2', sans-serif;
+    background:linear-gradient(135deg, #FFB25E, var(--orange));
+    color:#fff;
+    font-size:clamp(17px, 2.6vw, 22px);
+    font-weight:700;
+    padding:15px 40px;
+    border-radius:100px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 10px 24px -8px rgba(201,111,14,0.55);
+    transition:transform .15s ease, box-shadow .15s ease;
+    animation:bob 3s ease-in-out infinite;
+    margin-top:4px;
+  }
+  body.lang-en .path-btn{ font-family:'Baloo 2', sans-serif; }
+  .path-btn:hover{ transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(201,111,14,0.6); }
+  .path-btn:active{ transform:translateY(1px); box-shadow:0 6px 14px -6px rgba(201,111,14,0.5); }
+  @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-5px); } }
 
   /* ============ FORM SCREEN ============ */
   #screenForm{
@@ -112,9 +136,8 @@
     overflow-y:auto;
   }
   .back-btn{
-    position:absolute;
-    top:20px;
-    right:20px;
+    position:fixed;
+    top:18px; right:18px;
     background:#fff;
     border:2px solid rgba(43,58,58,0.12);
     color:var(--ink);
@@ -124,7 +147,7 @@
     padding:9px 18px;
     border-radius:100px;
     cursor:pointer;
-    display:flex; align-items:center; gap:6px;
+    z-index:50;
   }
   .card{
     background:#fff;
@@ -137,22 +160,14 @@
     position:relative;
   }
   .card::before{
-    content:"";
-    position:absolute;
-    top:-10px; right:-10px;
-    width:44px; height:44px;
-    background:var(--blue);
-    border-radius:50%;
-    border:4px solid #fff;
+    content:""; position:absolute; top:-10px; right:-10px;
+    width:44px; height:44px; background:var(--blue);
+    border-radius:50%; border:4px solid #fff;
   }
   .card::after{
-    content:"";
-    position:absolute;
-    bottom:-8px; left:-8px;
-    width:30px; height:30px;
-    background:var(--sand);
-    border-radius:50%;
-    border:4px solid #fff;
+    content:""; position:absolute; bottom:-8px; left:-8px;
+    width:30px; height:30px; background:var(--sand);
+    border-radius:50%; border:4px solid #fff;
   }
   .card h1{
     font-family:'Baloo Bhaijaan 2', sans-serif;
@@ -162,25 +177,20 @@
     text-align:center;
     margin-bottom:6px;
   }
+  body.lang-en .card h1{ font-family:'Baloo 2', sans-serif; }
   .card p.sub{
-    text-align:center;
-    font-size:14px;
-    color:rgba(43,58,58,0.6);
-    margin-bottom:26px;
+    text-align:center; font-size:14px;
+    color:rgba(43,58,58,0.6); margin-bottom:26px;
   }
   .field{ margin-bottom:16px; }
   .field label{
-    display:block;
-    font-size:13.5px;
-    font-weight:700;
-    margin-bottom:7px;
-    color:var(--ink);
+    display:block; font-size:13.5px; font-weight:700;
+    margin-bottom:7px; color:var(--ink);
   }
   .field input, .field select{
     width:100%;
-    font-family:'Tajawal', sans-serif;
-    font-size:15.5px;
-    font-weight:500;
+    font-family:inherit;
+    font-size:15.5px; font-weight:500;
     padding:14px 18px;
     border-radius:16px;
     border:2px solid #EDEAE0;
@@ -189,15 +199,13 @@
     outline:none;
     transition:border-color .15s ease, background .15s ease;
   }
-  .field input:focus, .field select:focus{
-    border-color:var(--orange);
-    background:#fff;
-  }
+  .field input:focus, .field select:focus{ border-color:var(--orange); background:#fff; }
   .field select{
     appearance:none; cursor:pointer;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%232B3A3A' stroke-width='2' fill='none' stroke-linecap='round'/></svg>");
     background-repeat:no-repeat; background-position:left 18px center;
   }
+  html[dir="ltr"] .field select{ background-position:right 18px center; }
   .submit-btn{
     appearance:none; border:none; cursor:pointer; width:100%;
     font-family:'Baloo Bhaijaan 2', sans-serif;
@@ -207,13 +215,12 @@
     box-shadow:0 6px 0 #C96F0E;
     transition:transform .12s ease, box-shadow .12s ease, opacity .15s ease;
   }
+  body.lang-en .submit-btn{ font-family:'Baloo 2', sans-serif; }
   .submit-btn:hover{ transform:translateY(2px); box-shadow:0 4px 0 #C96F0E; }
   .submit-btn:disabled{ opacity:.6; cursor:not-allowed; }
-
   .error-box{
     display:none;
-    background:rgba(226,80,65,0.1);
-    color:#C0392B;
+    background:rgba(226,80,65,0.1); color:#C0392B;
     border:1.5px solid rgba(226,80,65,0.3);
     padding:11px 14px; border-radius:14px;
     font-size:13.5px; font-weight:700; text-align:center;
@@ -227,8 +234,8 @@
   @keyframes pop{ from{opacity:0; transform:scale(.9);} to{opacity:1; transform:scale(1);} }
   .stamp{
     width:80px; height:80px; border-radius:50%;
-    background:var(--grass);
-    color:#fff; display:flex; align-items:center; justify-content:center;
+    background:var(--grass); color:#fff;
+    display:flex; align-items:center; justify-content:center;
     font-size:38px; margin:6px auto 18px;
     box-shadow:0 0 0 6px rgba(124,179,66,0.18);
   }
@@ -236,86 +243,84 @@
     font-family:'Baloo Bhaijaan 2', sans-serif;
     font-weight:700; font-size:24px; color:var(--grass-dark); margin-bottom:8px;
   }
+  body.lang-en .success h2{ font-family:'Baloo 2', sans-serif; }
   .success p{ font-size:14.5px; color:rgba(43,58,58,0.65); line-height:1.8; margin-bottom:20px;}
   .again-btn{
     appearance:none; border:2px solid var(--grass); background:#fff; color:var(--grass-dark);
-    font-family:'Tajawal', sans-serif; font-weight:700; font-size:14px;
+    font-family:inherit; font-weight:700; font-size:14px;
     padding:11px 22px; border-radius:100px; cursor:pointer;
   }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 480px){
-    #screenHome{ padding-bottom:11%; background-position:center 12%; }
-    .path-btn{ padding:15px 38px; }
+    .cta-stack{ top:40%; }
+    .path-btn{ padding:13px 32px; }
   }
   @media (min-width: 768px) and (max-width: 1180px){
-    /* iPad portrait & landscape */
-    #screenHome{ background-position:center 25%; padding-bottom:7%; }
+    .cta-stack{ top:44%; }
     .card{ max-width:480px; padding:44px 40px 38px; }
   }
-  @media (orientation: landscape) and (max-height: 600px){
-    #screenForm{ align-items:flex-start; padding-top:26px; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; }
-  }
+  @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }
 </style>
 </head>
-<body>
+<body id="bodyRoot">
+
+<button class="lang-toggle" onclick="toggleLang()" id="langToggle">English</button>
 
 <div class="app">
 
   <!-- ============ HOME SCREEN ============ -->
   <section id="screenHome" class="screen">
-    <div class="path-hint">اليوم المفتوح 🎈</div>
-    <button class="path-btn" onclick="goTo('form')">
-      سجّل حضورك
-    </button>
+    <div class="cta-stack">
+      <div class="open-day-title">Open Day</div>
+      <div class="path-hint" data-i18n="hint">سجّل حضورك اليوم</div>
+      <button class="path-btn" onclick="goTo('form')" data-i18n="cta">سجّل حضورك</button>
+    </div>
   </section>
 
   <!-- ============ FORM SCREEN ============ -->
   <section id="screenForm" class="screen">
-    <button class="back-btn" onclick="goTo('home')">→ رجوع</button>
+    <button class="back-btn" onclick="goTo('home')" data-i18n="back">رجوع</button>
 
     <div class="card">
       <div id="formWrap">
-        <h1>سجّل حضورك</h1>
-        <p class="sub">عبّي بياناتك عشان نستقبلك في اليوم المفتوح</p>
+        <h1 data-i18n="formTitle">سجّل حضورك</h1>
+        <p class="sub" data-i18n="formSub">عبّي بياناتك عشان نستقبلك في اليوم المفتوح</p>
 
         <form id="attendanceForm">
           <div class="field">
-            <label for="parentName">اسم ولي الأمر</label>
+            <label for="parentName" data-i18n="labelParent">اسم ولي الأمر</label>
             <input type="text" id="parentName" required>
           </div>
           <div class="field">
-            <label for="phone">رقم الجوال</label>
+            <label for="phone" data-i18n="labelPhone">رقم الجوال</label>
             <input type="tel" id="phone" placeholder="05xxxxxxxx" pattern="^05[0-9]{8}$" required>
           </div>
           <div class="field">
-            <label for="childName">اسم الطفل</label>
+            <label for="childName" data-i18n="labelChild">اسم الطفل</label>
             <input type="text" id="childName" required>
           </div>
           <div class="field">
-            <label for="stage">المرحلة الدراسية</label>
+            <label for="stage" data-i18n="labelStage">المرحلة الدراسية</label>
             <select id="stage" required>
-              <option value="" disabled selected>اختر المرحلة</option>
-              <option value="رياض الأطفال">رياض الأطفال</option>
-              <option value="تمهيدي">تمهيدي</option>
+              <option value="" disabled selected data-i18n="stagePlaceholder">اختر المرحلة</option>
+              <option value="رياض الأطفال" data-i18n="stageKG">رياض الأطفال</option>
+              <option value="تمهيدي" data-i18n="stagePreK">تمهيدي</option>
               <option value="KG1">KG1</option>
               <option value="KG2">KG2</option>
             </select>
           </div>
 
-          <div class="error-box" id="errorBox">صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.</div>
-          <button type="submit" class="submit-btn" id="submitBtn">تأكيد الحضور</button>
+          <div class="error-box" id="errorBox" data-i18n="errorMsg">صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.</div>
+          <button type="submit" class="submit-btn" id="submitBtn" data-i18n="confirm">تأكيد الحضور</button>
         </form>
       </div>
 
       <div class="success" id="successBox">
         <div class="stamp">✓</div>
-        <h2>تم التسجيل بنجاح</h2>
-        <p>يسعدنا استقبالكم في Kids Gate خلال اليوم المفتوح 🎉</p>
-        <button class="again-btn" onclick="resetForm()">تسجيل عائلة أخرى</button>
+        <h2 data-i18n="successTitle">تم التسجيل بنجاح</h2>
+        <p data-i18n="successMsg">يسعدنا استقبالكم في Kids Gate خلال اليوم المفتوح 🎉</p>
+        <button class="again-btn" onclick="resetForm()" data-i18n="again">تسجيل عائلة أخرى</button>
       </div>
     </div>
   </section>
@@ -323,6 +328,73 @@
 </div>
 
 <script>
+  /* ============ I18N ============ */
+  const I18N = {
+    ar:{
+      hint:"سجّل حضورك اليوم",
+      cta:"سجّل حضورك",
+      back:"رجوع",
+      formTitle:"سجّل حضورك",
+      formSub:"عبّي بياناتك عشان نستقبلك في اليوم المفتوح",
+      labelParent:"اسم ولي الأمر",
+      labelPhone:"رقم الجوال",
+      labelChild:"اسم الطفل",
+      labelStage:"المرحلة الدراسية",
+      stagePlaceholder:"اختر المرحلة",
+      stageKG:"رياض الأطفال",
+      stagePreK:"تمهيدي",
+      errorMsg:"صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.",
+      confirm:"تأكيد الحضور",
+      successTitle:"تم التسجيل بنجاح",
+      successMsg:"يسعدنا استقبالكم في Kids Gate خلال اليوم المفتوح 🎉",
+      again:"تسجيل عائلة أخرى",
+      toggleLabel:"English"
+    },
+    en:{
+      hint:"Register your attendance",
+      cta:"Register Now",
+      back:"Back",
+      formTitle:"Register Now",
+      formSub:"Fill in your details and we'll welcome you at Open Day",
+      labelParent:"Parent's Name",
+      labelPhone:"Mobile Number",
+      labelChild:"Child's Name",
+      labelStage:"Grade Level",
+      stagePlaceholder:"Select grade level",
+      stageKG:"Kindergarten",
+      stagePreK:"Pre-K",
+      errorMsg:"Something went wrong. Check your connection and try again.",
+      confirm:"Confirm Attendance",
+      successTitle:"You're registered!",
+      successMsg:"We're excited to welcome you at Kids Gate Open Day 🎉",
+      again:"Register another family",
+      toggleLabel:"العربية"
+    }
+  };
+
+  let currentLang = 'ar';
+
+  function applyLang(lang){
+    currentLang = lang;
+    const dict = I18N[lang];
+    document.getElementById('htmlRoot').setAttribute('lang', lang);
+    document.getElementById('htmlRoot').setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    document.getElementById('bodyRoot').classList.toggle('lang-en', lang === 'en');
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if(dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.getElementById('phone').placeholder = "05xxxxxxxx";
+    document.getElementById('langToggle').textContent = dict.toggleLabel;
+  }
+
+  function toggleLang(){
+    applyLang(currentLang === 'ar' ? 'en' : 'ar');
+  }
+
+  applyLang('ar');
+
+  /* ============ NAVIGATION ============ */
   function goTo(screen){
     const home = document.getElementById('screenHome');
     const form = document.getElementById('screenForm');
@@ -357,7 +429,7 @@
     e.preventDefault();
     errorBox.classList.remove('show');
     submitBtn.disabled = true;
-    submitBtn.textContent = "جارِ الإرسال...";
+    submitBtn.textContent = currentLang === 'ar' ? "جارِ الإرسال..." : "Sending...";
 
     const data = new FormData();
     data.append(ENTRY_IDS.parentName, document.getElementById('parentName').value);
@@ -372,7 +444,7 @@
     } catch(err){
       errorBox.classList.add('show');
       submitBtn.disabled = false;
-      submitBtn.textContent = "تأكيد الحضور";
+      submitBtn.textContent = I18N[currentLang].confirm;
     }
   });
 
@@ -381,7 +453,7 @@
     formWrap.style.display = 'block';
     successBox.classList.remove('show');
     submitBtn.disabled = false;
-    submitBtn.textContent = "تأكيد الحضور";
+    submitBtn.textContent = I18N[currentLang].confirm;
   }
 </script>
 
