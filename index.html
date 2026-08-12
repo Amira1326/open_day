@@ -311,7 +311,16 @@
               <option value="Grade II">Grade II</option>
               <option value="Grade III">Grade III</option>
               <option value="Grade IV">Grade IV</option>
+              <option value="زائر" data-i18n="stageVisitor">زائر</option>
             </select>
+          </div>
+          <div class="field">
+            <label for="adultsCount" data-i18n="labelAdults">عدد البالغين</label>
+            <input type="number" id="adultsCount" min="0" step="1" placeholder="0" required>
+          </div>
+          <div class="field">
+            <label for="kidsCount" data-i18n="labelKids">عدد الأطفال</label>
+            <input type="number" id="kidsCount" min="0" step="1" placeholder="0" required>
           </div>
 
           <div class="error-box" id="errorBox" data-i18n="errorMsg">صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.</div>
@@ -343,7 +352,10 @@
       labelPhone:"رقم الجوال",
       labelChild:"اسم الطفل",
       labelStage:"المرحلة الدراسية",
+      labelAdults:"عدد البالغين",
+      labelKids:"عدد الأطفال",
       stagePlaceholder:"اختر المرحلة",
+      stageVisitor:"زائر",
       errorMsg:"صار خطأ في الإرسال، تأكد من الإنترنت وحاول مرة ثانية.",
       confirm:"تأكيد الحضور",
       successTitle:"تم التسجيل بنجاح",
@@ -361,7 +373,10 @@
       labelPhone:"Mobile Number",
       labelChild:"Child's Name",
       labelStage:"Grade Level",
+      labelAdults:"Number of Adults",
+      labelKids:"Number of Children",
       stagePlaceholder:"Select grade level",
+      stageVisitor:"Visitor",
       errorMsg:"Something went wrong. Check your connection and try again.",
       confirm:"Confirm Attendance",
       successTitle:"You're registered!",
@@ -414,7 +429,9 @@
     parentName: "entry.493366918",
     phone:      "entry.68369020",
     childName:  "entry.1927320829",
-    stage:      "entry.1674858442"
+    stage:      "entry.1674858442",
+    adultsCount: "entry.555555555",
+    kidsCount:   "entry.666666666"
   };
   /* ========================================================================= */
 
@@ -435,6 +452,8 @@
     data.append(ENTRY_IDS.phone, document.getElementById('phone').value);
     data.append(ENTRY_IDS.childName, document.getElementById('childName').value);
     data.append(ENTRY_IDS.stage, document.getElementById('stage').value);
+    data.append(ENTRY_IDS.adultsCount, document.getElementById('adultsCount').value);
+    data.append(ENTRY_IDS.kidsCount, document.getElementById('kidsCount').value);
 
     try{
       await fetch(GOOGLE_FORM_ACTION_URL, { method:'POST', mode:'no-cors', body:data });
