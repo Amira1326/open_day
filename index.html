@@ -252,8 +252,18 @@
   }
 
   /* ============ RESPONSIVE ============ */
-  @media (max-width: 480px){
-    .cta-stack{ top:60%; }
+  @media (max-width: 600px){
+    #screenHome{
+      background-image:url('kidsgate-hero-mobile.png');
+      background-position:center top;
+    }
+    #screenForm{
+      background-image:
+        linear-gradient(rgba(255,253,246,0.82), rgba(255,253,246,0.88)),
+        url('kidsgate-hero-mobile.png');
+      background-position:center top;
+    }
+    .cta-stack{ top:52%; }
     .path-btn{ padding:13px 32px; }
   }
   @media (min-width: 768px) and (max-width: 1180px){
